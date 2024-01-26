@@ -1,7 +1,7 @@
 import Image from "next/legacy/image";
 
 export interface SlideData {
-  id: number;
+//   id: number;
   image: string;
 }
 const SLiderCard: React.FC<SlideData> = (props) => {

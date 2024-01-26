@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import SLiderCard, { SlideData } from "./SLiderCard";
 
@@ -57,12 +57,14 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     <>
       <div className="slideC cursor-pointer ">
         {props.data.map((item, i) => (
-          <React.Fragment key={item.id}>
-            <div className="slide"
+          <React.Fragment key={item.image}>
+            <div
+              className="slide"
               style={{
                 ...getStyles(i),
               }}
-              onClick={() => handleClick(i)}>
+              onClick={() => handleClick(i)}
+            >
               <SLiderCard {...item} />
             </div>
           </React.Fragment>
