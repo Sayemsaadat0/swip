@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import SLiderCard, { SlideData } from "./SLiderCard";
+import React, { FC, useState } from "react";
+import SliderCard1, { SliderCard1Type } from "./SliderCard1";
 
 interface CarouselProps {
-  data: SlideData[];
+  data: SliderCard1Type[];
   activeSlide: number;
 }
 
-const Carousel: React.FC<CarouselProps> = (props) => {
+const Carousel: FC<CarouselProps> = (props) => {
   const [activeSlide, setActiveSlide] = useState<number>(props.activeSlide);
 
   const handleClick = (index: number) => {
@@ -25,31 +25,49 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     else if (activeSlide - 1 === index)
       return {
         opacity: 1,
-        transition: "transform 1s ease",
         transform: "translateX(-240px) translateZ(-200px)",
+        transition: "transform 1s ease",
         zIndex: 9,
       };
     else if (activeSlide + 1 === index)
       return {
         opacity: 1,
+        transform: "translateX(240px) translateZ(-200px) ",
         transition: "transform 1s ease",
-        transform: "translateX(240px) translateZ(-200px)",
         zIndex: 9,
       };
     else if (activeSlide - 2 === index)
       return {
         opacity: 1,
-        transition: "transform 1s ease",
         transform: "translateX(-480px) translateZ(-500px) ",
+        transition: "transform 1s ease",
         zIndex: 8,
       };
     else if (activeSlide + 2 === index)
       return {
         opacity: 1,
+
+        transform: "translateX(480px) translateZ(-500px) ",
         transition: "transform 1s ease",
-        transform: "translateX(480px) translateZ(-500px)",
         zIndex: 8,
       };
+    else if (index < activeSlide - 2)
+      return {
+        opacity: 0,
+
+        transform: "translateX(-480px) translateZ(-500px) ",
+        transition: "transform 1s ease",
+        zIndex: 7,
+      };
+    else if (index > activeSlide + 2)
+      return {
+        opacity: 0,
+
+        transform: "translateX(480px) translateZ(-500px) ",
+        transition: "transform 1s ease",
+        zIndex: 7,
+      };
+
     return {};
   };
 
@@ -59,13 +77,13 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         {props.data.map((item, i) => (
           <React.Fragment key={item.image}>
             <div
-              className="slide"
+              className="slide "
               style={{
                 ...getStyles(i),
               }}
               onClick={() => handleClick(i)}
             >
-              <SLiderCard {...item} />
+              <SliderCard1 {...item} />
             </div>
           </React.Fragment>
         ))}
